@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sign.dao.RecordDao">
+  <resultMap id="recordMap" type="Record" >
+    <id column="rid" property="rid" jdbcType="INTEGER" />
+    <result column="date" property="date" jdbcType="TIMESTAMP" />
+    <result column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="message" property="message" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <insert id="addUdate" parameterType="int" >
+  	INSERT INTO record (udate, uid ) values (current_timestamp(), #{id}); 
+  </insert>
+  
+  
+  <select id="findRecordByPageAndSize" parameterType="map" resultType="Record">
+  	select * from record limit cpage=#{cpage}, size=#{size} where uid = #{uid};
+  </select>
+  
+  
+</mapper>
